@@ -1,0 +1,8 @@
+[package]
+name = "dora-socket-server"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+dora-node-api = "0.3.5"
+eyre = "0.6.8"
