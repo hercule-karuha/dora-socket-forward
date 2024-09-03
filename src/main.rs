@@ -1,5 +1,6 @@
 use dora_node_api::arrow::datatypes::ToByteSlice;
 use dora_node_api::{ArrowData, DoraNode, Event};
+use std::borrow::Borrow;
 use std::io::Write;
 use std::net::TcpListener;
 use std::sync::mpsc;
@@ -40,7 +41,7 @@ fn forward_server(receiver: mpsc::Receiver<ArrowData>) {
         let mut stream = stream.unwrap();
         loop {
             let data = receiver.recv().unwrap();
-            stream.write((&data).try_into().unwrap()).unwrap();
+            stream.write(data.borrow().try_into().unwrap()).unwrap();
         }
     }
 }
